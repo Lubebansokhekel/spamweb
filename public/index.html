@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spam Code Interface</title>
+    <title>GALIRUS OFFICIAL - Spam Pair No Limit</title>
     <style>
         html {
-            background-image: url(https://od.lk/s/OV8yNDE4NDA0MzFf/2dfc66d8d4be379dbf6948ad0637dbf2.jpg);
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
             background-attachment: fixed;
             color: #fff;
-            text-align: center;
-            font-family: "Kelly Slab", sans-serif;
+            font-family: "Roboto", sans-serif;
             margin: 0;
             font-weight: 600;
             height: 100vh;
+            transition: background-image 1s ease-in-out;
         }
         body {
             display: flex;
@@ -26,60 +25,120 @@
             align-items: center;
             height: 100%;
             margin: 0;
+            text-align: center;
         }
-        h1 {
+        .logo {
+            width: 300px;
+            height: auto;
             margin-bottom: 20px;
-            font-size: 5em; /* Ukuran font 5 */
-            color: red; /* Warna merah untuk teks */
-            text-shadow: 2px 2px 0 #000, /* Bayangan hitam di sekitar teks */
-                         3px 5px 5px #660000, /* Efek tetesan darah */
-                         5px 5px 5px #330000; /* Efek tetesan darah lebih jauh */
+        }
+        h2 {
+            margin-top: -10px;
+            font-size: 2em;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px #000;
         }
         form {
             background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
         }
-        label, input[type="text"] {
-            display: block;
-            margin: 10px auto;
+        label {
             font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+            text-align: left;
+            color: #ffffff;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
         }
         input[type="radio"] {
-            margin: 10px;
+            margin-right: 10px;
+        }
+        .radio-label {
+            font-size: 16px;
+            color: #ffffff;
         }
         .button-like {
-            padding: 10px 20px;
-            background-color: #3498db;
+            padding: 15px 30px;
+            background-color: rgb(40, 167, 69); /* RGB untuk #28a745 */
             color: #ffffff;
-            border: 2px solid #2980b9;
-            border-radius: 15px;
+            border: none;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 18px;
+            font-weight: bold;
             margin-top: 20px;
-            text-decoration: none; /* Menghapus underline pada tombol */
+            transition: background-color 0.3s ease;
         }
-
         .button-like:hover {
-            background-color: #2980b9;
-            border-color: #1c6ea4;
+            background-color: rgb(26, 188, 156); /* RGB untuk #1abc9c */
         }
-
+        .button-stop {
+            background-color: rgb(40, 167, 69); /* RGB untuk #28a745 */
+            margin-top: 10px;
+        }
+        .button-stop:hover {
+            background-color: rgb(26, 188, 156); /* RGB untuk #1abc9c */
+        }
         #log {
             margin-top: 20px;
-            padding: 10px;
+            padding: 15px;
             background-color: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
             max-height: 200px;
             overflow-y: auto;
             width: 100%;
             max-width: 600px;
-            color: #00ff00;
+            color: #00ff7f;
             font-family: monospace;
-            white-space: pre-wrap; /* Maintain whitespace formatting */
+            white-space: pre-wrap;
+        }
+        .footer-greetings {
+            margin-top: 30px;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #fff;
+            width: 80%;
+            margin-top: 30px;
+        }
+        marquee {
+            font-size: 14px;
         }
     </style>
     <script>
+        const backgrounds = [
+            'url(https://od.lk/s/OV8yMzMwNjgxNjdf/27474252defaffa36edeaf9d65396bd4.jpg)',
+            'url(https://od.lk/s/OV8yNDIwNjEwOTlf/3ac0d1fcdd92668dae5c9109606bbf75.jpg)',
+            'url(https://od.lk/s/OV8yNDIwNjEwOTZf/5d4a51fa94ee461244d4462cd5e6e76f.jpg)',
+            'url(https://od.lk/s/OV8yNDIwNjEwOTRf/7e61c9b167df3fee5334a44cb32aaf50.jpg)',
+            'url(https://od.lk/s/OV8yNDIwNjEwOTJf/93e99023890d7fff4f38ff4ad8a0d851.jpg)',
+            'url(https://od.lk/s/OV8yNDIwNjEwODlf/d6cabffe3ba7b23f64608e489480ce54.jpg)',
+            'url(https://od.lk/s/OV8yNDIwNjEwODZf/3aca1aeba5ac564159265557693f1c4e.jpg)',
+            'url(https://od.lk/s/OV8yNDIwNjEwODdf/5b0958d56936149300b517de32a6bb56.jpg)',
+            'url(https://od.lk/s/OV8yNDIwNjEwOTBf/db14097047a2c32b8237f78599685aa6.jpg)'
+        ];
+        let currentBackgroundIndex = 0;
+
+        function changeBackground() {
+            const htmlElement = document.documentElement;
+            htmlElement.style.backgroundImage = backgrounds[currentBackgroundIndex];
+            currentBackgroundIndex = (currentBackgroundIndex + 1) % backgrounds.length;
+        }
+
+        setInterval(changeBackground, 10000);
+
         const submitTargetNumbers = () => {
             const target1 = document.getElementById('target1').value;
             const target2 = document.getElementById('target2').value;
@@ -95,59 +154,61 @@
             .catch(error => console.error('Error:', error));
         };
 
+        const stopSpamming = () => {
+            fetch('/stop', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch(error => console.error('Error:', error));
+        };
+
         const startMonitoring = () => {
             const logDiv = document.getElementById('log');
-
-            const eventSource = new EventSource('/monitor'); // Use Server-Sent Events (SSE)
+            const eventSource = new EventSource('/monitor');
 
             eventSource.onmessage = function(event) {
-                // Update log without creating new elements
-                logDiv.textContent += event.data + '\n'; // Append new log message
+                logDiv.textContent += event.data + '\n';
             };
 
             eventSource.onerror = function() {
                 logDiv.textContent += 'Error: Connection lost.\n';
-                logDiv.style.color = 'red'; // Change color for error message
+                logDiv.style.color = 'red';
                 eventSource.close();
             };
         };
     </script>
 </head>
 <body>
-    <h1>SPAM PAIRING G404</h1>
+    <img src="https://od.lk/s/OV8yNDIwNjEyNzdf/GALIRUSOFFICIAL%20_ba-style%40nulla.top.png" alt="Galirus Official Logo" class="logo">
+    <h2>Spam Pair No Limit</h2>
     <form>
         <label for="target1">Nomor Target 1:</label>
-        <input type="text" id="target1" name="target1" placeholder="Masukkan Nomor Terget 628">
+        <input type="text" id="target1" name="target1" placeholder="Masukkan Nomor Target 628">
         
         <label for="target2">Nomor Target 2:</label>
-        <input type="text" id="target2" name="target2" placeholder="Masukkan Nomor Terget 628">
+        <input type="text" id="target2" name="target2" placeholder="Masukkan Nomor Target 628">
         
         <br>
 
         <input type="radio" id="option1" name="option" value="1" checked>
-        <label for="option1">1 Target (No Limit)</label><br>
+        <label class="radio-label" for="option1">1 Target (No Limit)</label><br>
         
         <input type="radio" id="option2" name="option" value="2">
-        <label for="option2">2 Target (No Limit)</label><br>
+        <label class="radio-label" for="option2">2 Target (No Limit)</label><br>
 
         <input type="button" class="button-like" value="Start" onclick="submitTargetNumbers()">
+        <input type="button" class="button-like" value="Subscribe" onclick="window.location.href='https://www.youtube.com/@GalirusProjects'">
+        <input type="button" class="button-like button-stop" value="Stop" onclick="stopSpamming()">
         <input type="button" class="button-like" value="Monitoring" onclick="startMonitoring()">
-
-        <!-- Tombol Subscribe tanpa garis bawah -->
-        <div class="button-like" onclick="window.location.href='https://www.youtube.com/@GalirusProjects'">
-            Subscribe
-        </div>
     </form>
 
-    <div id="log"></div> <!-- Log container for monitoring -->
+    <div id="log"></div>
     <hr>
-    <div size="10" class="footer-greetings">
-        <marquee><font size="4" color="red">
-            <b>THANKS YOU FOR</b>: 
-        </font><font size="5" color="white">
-            WE ARE GALIRUS OFFICIAL || PROJECTS ini di kembangkan oleh GALIRUS OFFICIALL dengan bantuan doa dari TUHAN || ORTU || GUSTI ||
-        </font></marquee>
+    <div class="footer-greetings">
+        <marquee><font color="red"><b>THANK YOU FOR</b>: </font>
+   <font color="white">|| TUHAN || GALIRUS OFFICIAL || GUSTI || ORTU ||</font></marquee>
+   <font size="3" color="white">© 2024 Galirus Official. All rights reserved.</font><br><hr>
+   <audio controls="controls" autoplay="true" loop="loop" src="https://od.lk/s/OV8yMzk0NDk4ODdf/youtube_music_1725381620.mp3"></audio>
+	</i>
     </div>
-    <hr><br>
 </body>
 </html>
